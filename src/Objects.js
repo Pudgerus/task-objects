@@ -8,13 +8,37 @@
   Объект после манипуляций следует вернуть в качестве результата работы функции.
 */
 export function personUpdate(data) {
+  switch (data.gender){
+    case 'female':
+      delete data.age
+      break;
+    case 'male':
+      if (!('income' in data)) {
+        data.income = 100000
+      }
+    }
+
+  return data
 }
+
 
 /*
   В функцию objectFieldsList приходят три объекта с различными полями, список которых заранее неизвестен.
   Верните список названий этих полей в алфавитном порядке в виде массива строк.
 */
 export function objectFieldsList(obj1, obj2, obj3) {
+  let arr = []
+  const all = [obj1, obj2, obj3]
+ 	all.forEach(obj => {
+  	for (let key in obj) {
+    	if (obj.hasOwnProperty(key)) {
+				arr.push(key)
+      }
+    }
+  });
+  
+  arr.sort();
+  return arr
 }
 
 /*
@@ -23,4 +47,10 @@ export function objectFieldsList(obj1, obj2, obj3) {
   Количество клонов - count.
 */
 export function objectClone(obj, count) {
+  let arr = []
+  for (let id = 0; id < count; id++) {
+    arr.push({id, ...structuredClone(obj)})
+  }
+
+  return arr;
 }
