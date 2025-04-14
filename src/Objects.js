@@ -48,8 +48,8 @@ export function objectFieldsList(obj1, obj2, obj3) {
 */
 export function objectClone(obj, count) {
   let arr = []
-  for (let i = 0; i < count; i++) {
-    arr.push({i, ...obj})
+  for (let id = 0; id < count; id++) {
+    arr.push({id, ...obj})
   }
 
   return arr;
